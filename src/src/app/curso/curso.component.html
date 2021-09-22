@@ -1,0 +1,63 @@
+<div class="jumbotron jumbotron-fluid" style="background-color:#11A5D4;">
+    <div class="container">
+        <h1 class="display-4">{{tema.tipo}}</h1>
+        <p class="lead">Esta é uma área dedicada para se aprender linguagens e frameworks relacionadas a {{tema.tipo}}
+            100% gratuito!
+        </p>
+    </div>
+</div>
+
+
+
+
+<div class="container mb-5">
+    <div class="card-columns">
+        <div class="card" *ngFor='let item of tema.postagens'>
+            <img *ngIf='item.imagem' class="card-img-top" src="{{item.imagem}}" alt="Imagem de capa do card">
+            <div class="card-body">
+                <h5 class="card-title">{{item.curso}}</h5>
+                <small>{{item.nivel}}</small>
+                <p class="card-text">{{item.descricao}}</p>
+                <a href="{{item.link}}" target="_blank" class="btn btn-primary">Clique
+                    aqui!</a>
+            </div>
+            <td  *ngIf='authService.adm()' class="d-flex justify-content-end mb-3 mr-3">
+                <button class="btn btn-info mr-3" [routerLink]="['/curso-edit', item.id]">Editar</button>
+                <button class="btn btn-danger" [routerLink]="['/curso-delete', item.id]">Apagar</button>
+            </td>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a href="#" id="feedback" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalExemplo">
+        clique </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ei, cê precisa de ajuda? Conta conosco</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> A pandemia e o isolamento por si sós são dois grandes problemas, mas separamos aqui algumas
+                        referências para te ajudar em qualquer eventualidade. Clicando em qualquer uma delas, você é
+                        redirecionade pra lá, ok? </p>
+                </div>
+                <div class="modal-footer d-flex justify-content-center ">
+                    <a href="http://www.apeoesp.org.br/publicacoes/atendimento-psicologico/atendimento-psicologico-gratuito-neste-periodo-de-isolamento-veja-aqui/"
+                        target="_blank" type="button" class="btn btn-outline-danger rounded-pill  btn-sm">Atendimento
+                        psicológico gratuito</a>
+                    <a href="https://www.cvv.org.br/" target="_blank" type="button"
+                        class="btn btn-outline-danger rounded-pill  btn-sm">Centro de Valorização a Vida</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
