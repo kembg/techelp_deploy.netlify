@@ -1,0 +1,96 @@
+<div class="container-fluid m-0" style="background-color:#74b7ed;">
+
+    <div *ngIf='usuario.foto' class="row mb-4">
+        <div class="col-md-12 d-flex justify-content-center mt-3"> 
+        <img src="{{usuario.foto}}" alt="imagem de perfil do usuário" style="border-radius: 50%; width: 300px; height: 300px; margin: 0px;">
+        </div>
+    </div>
+
+<div class="row d-flex justify-content-center mb-2">
+    <div class="col-md-6 d-flex justify-content-center mt-5"><button class="btn btn-info" data-toggle="collapse"
+            data-target="#editar">Editar usuário</button></div>
+</div>
+
+<div class="container mb-5 mt-2 collapse" id="editar">
+
+    <div class="row d-flex justify-content-center p-5">
+
+        <div class="col-xl-4 col-md-4 mt-2 mb-5" style="background-color: rgb(85, 167, 182);border-radius: 10%;">
+
+            <h2 class="text-center mt-1">Atualizar meu usuário</h2>
+            <hr>
+
+            <div class="form-group">
+                <label for="nomeCompleto"><b>Nome Completo</b></label>
+                <input [(ngModel)]="usuario.nomeCompleto" class="form-control" type="text" name="nome" id="nome"
+                    placeholder="Nome Completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email"><b>E-mail</b></label>
+                <input [(ngModel)]="usuario.email" class="form-control" type="text" name="email" id="email"
+                    placeholder="Seu email">
+            </div>
+
+            <div class="form-group">
+                <label for="foto"> <b>Link da Foto</b></label>
+                <input [(ngModel)]="usuario.foto" class="form-control" type="text" name="foto" id="foto"
+                    placeholder="Link da sua foto">
+            </div>
+
+            <div class="row align-items">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="senha"><b>Senha</b></label>
+                        <input (input)="confirmSenha($event)" class="form-control" type="password" name="senha"
+                            id="senha" placeholder="Sua senha">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="confirmSenha"><b>Confirmar Senha</b></label>
+                        <input [(ngModel)]="usuario.senha" class="form-control" type="password" name="confirmSenha"
+                            id="confirmSenha" placeholder="Confirme sua senha">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-2 mb-3 offset-md-2">
+                    <button type="submit" class="btn btn-outline-dark mr-2" routerLink='/inicio'><b>Cancelar</b></button>
+                    <button type="submit" class="btn btn-primary ml-4" (click)='atualizar()'><b>Atualizar</b></button>
+                </div>
+
+                <div class="col-md-6 d-flex justify-content-center">
+                        
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        <div class="row d-flex justify-content-center mt-2">
+            <div class="col-md-6 d-flex justify-content-center mb-5"><button class="btn btn-info" data-toggle="collapse"
+                    data-target="#postagens">Minhas postagens</button></div>
+        </div>
+
+        <div class="container mt-5 mb-5 collapse" id="postagens">
+
+            <div class="card mb-2" *ngFor='let item of usuario.forum'>
+                <h5 class="card-header">{{item.titulo}}</h5>
+                <div class="card-body">
+                    <img class="img-forum" src="{{item.imagem}}" alt="imagem da publicação do usuário">
+                    <p class="card-text">{{item.publicacao}}
+                    </p>
+                    <button class="btn btn-info mr-4" [routerLink]="['/resposta', item.id]">Participar desse
+                        forum</button>
+                    <td class="d-flex justify-content-end">
+                        <button class="btn btn-info mr-3" [routerLink]="['/forum-edit', item.id]">Editar</button>
+                        <button class="btn btn-danger" [routerLink]="['/forum-delete', item.id]">Apagar</button>
+                    </td>
+                </div>
+            </div>
+
+        </div>
+
+</div>
